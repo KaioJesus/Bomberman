@@ -1,85 +1,89 @@
-#include "raylib.h"
+#include "mapa.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-// definindo o numero máximo de inimigos e chaves
-#define MAX_ENEMIES 5
-#define KEYS 5
-
-typedef struct RECTANGLE {
-    int x;
-    int y;
-    int width;
-    int height;
-    char color[10];
-} RECTANGLE;
-
-// estrutura definida com os dados do mapa
-typedef struct {
-    char **grid;
-    int currentLevel;
-    int totalKeys;
-} GameMap;
- 
-// tipos de bloco
-enum BLOCKS { CAIXA_COM_CHAVE, PAREDE_INDESTRUTIVEL, PAREDE_DESTRUTIVEL}
-
-int main(){
-
-    const int screenWidth = 1280;
-    const int screenHeight = 600;
-    const int mapHeight = 25;
-    const int mapWidth = 60;
-    const int blockSize = 20
-    const int areaInfoSize = 100;
-
-
-    //Inicializa a Janela gráfica
-    InitWindow(screenWidth, screenHeight, "Bomberman");
-
-    // Define os quadros por segundo
-    SetTargetFPS(60)
-
-    // Retorna verdadeiro casa a tecla senha pressionada
-    IsKeyPressed()
-
-    //Define o início do contexto do desenho gráfico
-    BeginDrawing()
-    
-    //Define o fim do desenho
-    EndDrawing()
-
-    //Desenha um retangulo na posição informada
-    DrawRectangle();
-
-    //Fecha a Janela
-    CloseWindow()
-
-    //
-    IsKeyDown();
+void IniciaMapa(GameMapa *mapa) {
+    mapa->grid = (char**)malloc(MAPA_ALTURA * sizeof(char*));
+    for (int i = 0; i < MAPA_ALTURA; i++) {
+        mapa->grid[i] = (char*)malloc(MAPA_LARGURA * sizeof(char));
+    }
+    mapa->levelAtual = 1;
+    mapa->totalChaves = 5;
 }
 
-dawMap(
-    // Se a Janela for fechada ou o ESC pressionado, retorna true
-    while(!WindowShouldClose){
-        BeginDrawing();
-
-        EndDrawing();
+void CarregaMapa(Game *game, int level) {
+    char filename[50];
+    sprintf(filename, "mapa%d.txt", level);
+    
+    FILE *file = fopen(filename, "r");
+    if (!file) {
+        return;
     }
-
-    CloseWindow();
-)
-
-openTextFile(){
-    FILE *parq;
-    parq=fopen("mapa1.txt","r");
-
-    if(parq==NULL){
-        printf("Erro na abertura do arquivo");
-        return -1;
+    
+    game->InimigoCount = 0;
+    for (int y = 0; y < MAPA_ALTURA; y++) {
+        for (int x = 0; x < MAPA_LARGURA; x++) {
+            char c = fgetc(file);
+            if (c == '\n') c = fgetc(file);
+            
+            game->map.grid[y][x] = c;
+            
+            if (c == 'J') {
+                game->jogador.pos.x = x;
+                game->jogador.pos.y = y;
+                game->map.grid[y][x] = ' ';
+            } else if (c == 'E' && game->InimigoCount < MAX_INIMIGOS) {
+                game->enemies[game->InimigoCount].pos.x = x;
+                game->enemies[game->InimigoCount].pos.y = y;
+                game->enemies[game->InimigoCount].dir = rand() % 4;
+                game->enemies[game->InimigoCount].moveTimer = 0.0f;
+                game->InimigoCount++;
+                game->map.grid[y][x] = ' ';
+            }
+        }
     }
+    fclose(file);
+    
+    game->map.levelAtual = level;
+}
 
-    i=0;
-    while (!feof(parq)){
-        i++;
+bool EhValidaPosicao(Game *game, Posicao pos) {
+    if (pos.x < 0 || pos.x >= MAPA_LARGURA || pos.y < 0 || pos.y >= MAPA_ALTURA) {
+        return false;
     }
-    fclose(parq);
+    
+    char tile = game->map.grid[pos.y][pos.x];
+    return (tile == ' ' || tile == 'K');
+}
+
+void DesenhaMapa(Game *game) {
+    for (int y = 0; y < MAPA_ALTURA; y++) {
+        for (int x = 0; x < MAPA_LARGURA; x++) {
+            Rectangle rect = {x * BLOCO_TAMANHO, y * BLOCO_TAMANHO, BLOCO_TAMANHO, BLOCO_TAMANHO};
+            
+            switch (game->map.grid[y][x]) {
+                case 'W':
+                    DrawRectangleRec(rect, GRAY);
+                    break;
+                case 'D':
+                    DrawRectangleRec(rect, BROWN);
+                    break;
+                case 'B':
+                    DrawRectangleRec(rect, ORANGE);
+                    break;
+                case 'K':
+                    DrawRectangleRec(rect, GOLD);
+                    break;
+            }
+        }
+    }
+}
+
+void FreeMapa(GameMapa *map) {
+    for (int i = 0; i < MAPA_ALTURA; i++) {
+        free(map->grid[i]);
+    }
+    free(map->grid);
+    free(map);
 }
