@@ -1,5 +1,4 @@
 #include "inimigo.h"
-#include "map.h"
 #include <stdlib.h>
 #include "raylib.h"
 
