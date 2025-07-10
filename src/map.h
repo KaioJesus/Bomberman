@@ -1,7 +1,7 @@
 #ifndef MAPA_H
 #define MAPA_H
 
-#include "game_types.h"
+#include "estruturas.h"
 
 // Funções do mapa
 void IniciaMapa(GameMapa *mapa);
