@@ -52,11 +52,6 @@ void AtualizarInimigos(Game *game) {
             enemy->moveTimer = tempoAtual;
         }
 
-        // Verifica colisão com jogador
-        if (enemy->pos.x == game->jogador.pos.x && enemy->pos.y == game->jogador.pos.y) {
-            game->jogador.vidas--;
-            game->jogador.pontos -= 100;
-            if (game->jogador.pontos < 0) game->jogador.pontos = 0;
-        }
+        
     }
 }
