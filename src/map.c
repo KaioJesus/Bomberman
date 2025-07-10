@@ -33,14 +33,7 @@ void CarregaMapa(Game *game, int level) {
                 game->jogador.pos.x = x;
                 game->jogador.pos.y = y;
                 game->map.grid[y][x] = ' ';
-            } else if (c == 'E' && game->InimigoCount < MAX_INIMIGOS) {
-                game->enemies[game->InimigoCount].pos.x = x;
-                game->enemies[game->InimigoCount].pos.y = y;
-                game->enemies[game->InimigoCount].dir = rand() % 4;
-                game->enemies[game->InimigoCount].moveTimer = 0.0f;
-                game->InimigoCount++;
-                game->map.grid[y][x] = ' ';
-            }
+            } 
         }
     }
     fclose(file);
