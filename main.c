@@ -24,10 +24,10 @@ int main(void)
 {
     // Initialization
     //--------------------------------------------------------------------------------------
-    const int screenWidth = 1200;
-    const int screenHeight = 600;
+    const int screenWidth = 800;
+    const int screenHeight = 450;
 
-    InitWindow(screenWidth, screenHeight, "raylib [core] example - 2d camera split screen");
+    InitWindow(screenWidth, screenHeight, "raylib [core] example - 3d camera split screen");
 
     // Setup player 1 camera and screen
     Camera cameraPlayer1 = { 0 };
