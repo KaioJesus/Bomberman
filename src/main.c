@@ -5,7 +5,7 @@
 #include <time.h>
 #include <math.h>
 #include "inimigo.h"
-
+#include"bomb.h"
 // Constantes do jogo
 #define TELA_LARGURA 1200
 #define TELA_ALTURA 600
