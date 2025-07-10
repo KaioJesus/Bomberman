@@ -1,4 +1,5 @@
 #include "inimigo.h"
+#include "map.h"
 #include <stdlib.h>
 #include "raylib.h"
 
@@ -44,7 +45,7 @@ void AtualizarInimigos(Game *game) {
         }
 
         // Verifica se posição é livre
-        if (posicaoLivre(&game->map, novaPos.y, novaPos.x)) {
+        if (EhValidaPosicao(game, novaPos)) {
             enemy->pos = novaPos;
         } else {
             // Se bater em parede, sorteia nova direção
