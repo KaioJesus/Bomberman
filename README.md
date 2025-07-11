@@ -33,8 +33,7 @@ Para compilar e executar este projeto, você precisará ter o compilador GCC (ou
 
 1.  **Clone o repositório**:
     ```bash
-    git clone [https://github.com/KaioJesus/Bomberman.git](https://github.com/KaioJesus/Bomberman.git)
-    cd NomeDoRepositorio
+    git clone https://github.com/KaioJesus/Bomberman.git
     ```
 2.  **Crie a pasta de mapas**:
     Dentro do diretório raiz do projeto, crie uma pasta chamada `mapas` e coloque os arquivos `mapa1.txt`, `mapa2.txt`, etc., dentro dela. (Exemplo: `mapas/mapa1.txt`).
