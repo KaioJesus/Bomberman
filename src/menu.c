@@ -78,10 +78,7 @@ void HandleInput(Game *game)
             {
             case MENU_NOVO_JOGO:
                 // Resetar jogo
-                game->jogador.vidas = 3;
-                game->jogador.pontos = 0;
-                game->jogador.bombaContador = 3;
-                game->jogador.chavesColetadas = 0;
+                inicializa_jogador(&game->jogador, 0, 0);
                 CarregaMapa(game, 1);
                 game->state = GAME_PLAYING;
                 break;

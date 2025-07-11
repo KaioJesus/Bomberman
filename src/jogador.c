@@ -1,48 +1,55 @@
 #include "jogador.h"
+#include "raylib.h"
+#include "map.h"
 
-// Função para verificar colisão entre duas posições
 bool verificaColisao(Posicao pos1, Posicao pos2)
 {
-    // Retorna true se as posições forem iguais (colisão)
     return (pos1.x == pos2.x && pos1.y == pos2.y);
 }
 
-// Função para mover o jogador em uma direção
+void inicializa_jogador(Jogador *j, int x, int y)
+{
+    j->pos.x = x;
+    j->pos.y = y;
+    j->vidas = 3;
+    j->pontos = 0;
+    j->bombaContador = 3;
+    j->chavesColetadas = 0;
+}
+
 void MoveJogador(Game *game, Direcao dir)
 {
-    // Cria uma nova posição inicializada com a posição atual do jogador
     Posicao newPos = game->jogador.pos;
 
-    // Atualiza a nova posição de acordo com a direção escolhida
     switch (dir)
     {
     case DIR_CIMA:
-        newPos.y--; // Move para cima (diminui y)
+        newPos.y--;
         break;
     case DIR_BAIXO:
-        newPos.y++; // Move para baixo (aumenta y)
+        newPos.y++;
         break;
     case DIR_ESQUERDA:
-        newPos.x--; // Move para esquerda (diminui x)
+        newPos.x--;
         break;
     case DIR_DIREITA:
-        newPos.x++; // Move para direita (aumenta x)
+        newPos.x++;
         break;
     }
 
-    // Verifica se a nova posição é válida (não é parede, nem fora do mapa)
     if (EhValidaPosicao(game, newPos))
     {
-        // Verifica se na nova posição existe uma chave
         if (game->map.grid[newPos.y][newPos.x] == 'K')
         {
-            // Incrementa o contador de chaves coletadas
             game->jogador.chavesColetadas++;
-            // Remove a chave do mapa
             game->map.grid[newPos.y][newPos.x] = ' ';
         }
 
-        // Atualiza a posição do jogador para a nova posição
         game->jogador.pos = newPos;
     }
+}
+
+void desenhar_jogador(Jogador j)
+{
+    DrawRectangle(j.pos.x * BLOCO_TAMANHO, j.pos.y * BLOCO_TAMANHO, BLOCO_TAMANHO, BLOCO_TAMANHO, BLUE);
 }

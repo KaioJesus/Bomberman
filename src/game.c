@@ -1,18 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "game.h"
+#include "jogador.h"
 
 Game *IniciaJogo(void)
 {
     Game *game = (Game *)malloc(sizeof(Game));
 
     // Inicializar jogador
-    game->jogador.pos.x = 0;
-    game->jogador.pos.y = 0;
-    game->jogador.vidas = 3;
-    game->jogador.pontos = 0;
-    game->jogador.bombaContador = 3;
-    game->jogador.chavesColetadas = 0;
+    inicializa_jogador(&game->jogador, 0, 0);
 
     // Inicializar estado
     game->state = GAME_PLAYING;
@@ -107,12 +103,7 @@ void DesenhaJogo(Game *game)
     }
 
     // Desenhar jogador
-    Rectangle jogadorRect = {
-        game->jogador.pos.x * BLOCO_TAMANHO,
-        game->jogador.pos.y * BLOCO_TAMANHO,
-        BLOCO_TAMANHO,
-        BLOCO_TAMANHO};
-    DrawRectangleRec(jogadorRect, BLUE);
+    desenhar_jogador(game->jogador);
 
     // Desenhar inimigos
     for (int i = 0; i < game->InimigoCount; i++)
