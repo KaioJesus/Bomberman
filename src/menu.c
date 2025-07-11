@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include "estruturas.h"
 #include <stdlib.h>
+#include "menu.h"
 
 // Desenho do menu
 void DesenhaMenu(Game *game)

@@ -27,43 +27,6 @@ void InicializarInimigos(Game *game)
 }
 
 // Função para atualizar movimento dos inimigos
-<<<<<<< HEAD
-void AtualizaInimigos(Game *game) {
-    for (int i = 0; i < game->InimigoCount; i++) {
-        game->enemies[i].moveTimer += GetFrameTime();
-        
-        if (game->enemies[i].moveTimer >= 0.5f) {
-            game->enemies[i].moveTimer = 0.0f;
-            
-            // Tentar mover na direcao atual
-            Posicao novaPosicao = game->enemies[i].pos;
-            
-            switch (game->enemies[i].dir) {
-                case DIR_CIMA: novaPosicao.y--; break;
-                case DIR_BAIXO: novaPosicao.y++; break;
-                case DIR_ESQUERDA: novaPosicao.x--; break;
-                case DIR_DIREITA: novaPosicao.x++; break;
-            }
-            
-            if (EhValidaPosicao(game, novaPosicao)) {
-                // Verificar se não há outro inimigo na posição
-                bool occupied = false;
-                for (int j = 0; j < game->InimigoCount; j++) {
-                    if (j != i && verificaColisao(novaPosicao, game->enemies[j].pos)) {
-                        occupied = true;
-                        break;
-                    }
-                }
-                
-                if (!occupied) {
-                    game->enemies[i].pos = novaPosicao;
-                } else {
-                    game->enemies[i].dir = rand() % 4;
-                }
-            } else {
-                game->enemies[i].dir = rand() % 4;
-            }
-=======
 void AtualizarInimigos(Game *game)
 {
     float tempoAtual = GetTime();
@@ -115,7 +78,6 @@ void AtualizarInimigos(Game *game)
             game->jogador.pontos -= 100;
             if (game->jogador.pontos < 0)
                 game->jogador.pontos = 0;
->>>>>>> f4b3632 (feat: modularizacao)
         }
     }
 }

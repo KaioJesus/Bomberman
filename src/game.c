@@ -97,7 +97,7 @@ void DesenhaJogo(Game *game)
                 DrawRectangleRec(rect, BROWN);
                 break;
             case 'B':
-                DrawRectangleRec(rect, ORANGE);
+                DrawRectangleRec(rect, GOLD);
                 break;
             case 'K':
                 DrawRectangleRec(rect, GOLD);
@@ -154,4 +154,17 @@ void DesenhaJogo(Game *game)
 
     // Escreve as funcionalidades de jogo
     DrawText("TAB: Menu | WASD/Setas: Mover | B: Bomba", 10, GAME_AREA_HEIGHT + 64, 24, BLACK);
+}
+
+void FreeGame(Game *game) // Assinatura correta
+{
+    // Liberar o grid do mapa
+    for (int i = 0; i < MAPA_ALTURA; i++)
+    {
+        free(game->map.grid[i]);
+    }
+    free(game->map.grid);
+
+    // Liberar a estrutura do jogo
+    free(game);
 }
