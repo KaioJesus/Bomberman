@@ -19,7 +19,7 @@ void InicializarInimigos(Game *game)
                 game->enemies[count].dir = (Direcao)(rand() % 4);
                 game->enemies[count].moveTimer = GetTime();
 
-                **game->map.grid[i][j] = ' ';
+                game->map.grid[i][j] = ' ';
 
                 count++;
             }
@@ -28,7 +28,6 @@ void InicializarInimigos(Game *game)
 
     game->InimigoCount = count;
 }
-
 
 // Função para atualizar movimento dos inimigos
 void AtualizaInimigos(Game *game)
