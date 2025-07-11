@@ -1,6 +1,6 @@
 #include "jogador.h"
 #include "raylib.h"
-#include "mapa.h"  // Necessário se EhValidaPosicao estiver em mapa.c
+#include "mapa.h" 
 
 bool verificaColisao(Posicao pos1, Posicao pos2) {
     return (pos1.x == pos2.x && pos1.y == pos2.y);
