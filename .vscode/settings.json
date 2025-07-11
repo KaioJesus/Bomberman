@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "state_game.h": "c"
+        "state_game.h": "c",
+        "stdlib.h": "c",
+        "time.h": "c"
     }
 }

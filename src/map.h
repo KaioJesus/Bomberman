@@ -6,9 +6,7 @@
 #include "estruturas.h"
 
 // Funções do mapa
-void IniciaMapa(GameMapa *mapa);
 void CarregaMapa(Game *game, int level);
 bool EhValidaPosicao(Game *game, Posicao pos);
-void DesenhaMapa(Game *game);
 
 #endif
