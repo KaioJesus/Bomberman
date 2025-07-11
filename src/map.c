@@ -86,13 +86,3 @@ void DesenhaMapa(Game *game)
         }
     }
 }
-
-void FreeMapa(GameMapa *map)
-{
-    for (int i = 0; i < MAPA_ALTURA; i++)
-    {
-        free(map->grid[i]);
-    }
-    free(map->grid);
-    free(map);
-}
