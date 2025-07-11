@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #ifndef MENU_H
 #define MENU_H
 
@@ -13,16 +12,4 @@ void DesenhaTelaJogoPerdido(Game *game);
 void DesenhaTelaVitoria(Game *game);
 void HandleInput(Game *game);
 
-=======
-#ifndef MENU_H
-#define MENU_H
-
-#include "estruturas.h"
-
-void DesenhaMenu(Game *game);
-void DesenhaTelaJogoPerdido(Game *game);
-void DesenhaTelaVitoria(Game *game);
-void HandleInput(Game *game);
-
->>>>>>> 7533bf8a2a625ca6c81d3e2d1303422c0ae902c7
 #endif

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #ifndef GAME_H
 #define GAME_H
 
@@ -15,17 +14,4 @@ void AtualizaJogo(Game *game);
 void DesenhaJogo(Game *game);
 void FreeGame(Game *game);
 
-=======
-#ifndef GAME_H
-#define GAME_H
-
-#include "estruturas.h"
-#include <stdio.h>
-
-// Protótipos das funções
-Game *IniciaJogo(void);
-void AtualizaJogo(Game *game);
-void DesenhaJogo(Game *game);
-
->>>>>>> 7533bf8a2a625ca6c81d3e2d1303422c0ae902c7
 #endif
