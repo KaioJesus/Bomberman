@@ -5,6 +5,6 @@
 #include "map.h"
 
 void InicializarInimigos(Game *game);
-void AtualizarInimigos(Game *game);
+void AtualizaInimigos(Game *game);
 
 #endif

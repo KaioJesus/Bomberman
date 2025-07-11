@@ -45,7 +45,7 @@ void AtualizaJogo(Game *game)
     game->gameTime += GetFrameTime();
 
     AtualizaBomba(game);
-    AtualizarInimigos(game);
+    AtualizaInimigos(game);
 
     // Verificar colisão com inimigos
     for (int i = 0; i < game->InimigoCount; i++)

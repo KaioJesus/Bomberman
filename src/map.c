@@ -7,7 +7,7 @@
 void CarregaMapa(Game *game, int level)
 {
     char filename[50];
-    sprintf(filename, "mapa%d.txt", level);
+    sprintf(filename, "mapas/mapa%d.txt", level);
 
     FILE *file = fopen(filename, "r");
     if (!file)
