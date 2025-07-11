@@ -1,9 +1,0 @@
-#ifndef INIMIGO_H
-#define INIMIGO_H
-
-#include "estruturas.h"
-
-void InicializarInimigos(Game *game);
-void AtualizarInimigos(Game *game);
-
-#endif
