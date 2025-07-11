@@ -33,7 +33,7 @@ Para compilar e executar este projeto, você precisará ter o compilador GCC (ou
 
 1.  **Clone o repositório**:
     ```bash
-    git clone [https://github.com/SeuUsuario/NomeDoRepositorio.git](https://github.com/SeuUsuario/NomeDoRepositorio.git)
+    git clone [https://github.com/KaioJesus/Bomberman.git](https://github.com/KaioJesus/Bomberman.git)
     cd NomeDoRepositorio
     ```
 2.  **Crie a pasta de mapas**:
@@ -85,9 +85,8 @@ Contribuições são bem-vindas! Se você tiver sugestões, melhorias ou encontr
 
 ## 👨‍💻 Desenvolvedores
 
-* [Seu Nome/Nome do Grupo]
-* [Outros Membros do Grupo]
+* [Kaio Jesus]
+* [Daniel]
+* [Emily]
+* Izabel
 
-## 📜 Licença
-
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes. (Se você não tiver um, pode criar um arquivo LICENSE com o texto da licença MIT).
