@@ -16,8 +16,11 @@ void InicializarInimigos(Game *game)
             {
                 game->enemies[count].pos.x = j;
                 game->enemies[count].pos.y = i;
-                game->enemies[count].dir = (Direcao)(rand() % 4); // Direção aleatória inicial
+                game->enemies[count].dir = (Direcao)(rand() % 4);
                 game->enemies[count].moveTimer = GetTime();
+
+                **game->map.grid[i][j] = ' ';
+
                 count++;
             }
         }
@@ -25,6 +28,7 @@ void InicializarInimigos(Game *game)
 
     game->InimigoCount = count;
 }
+
 
 // Função para atualizar movimento dos inimigos
 void AtualizaInimigos(Game *game)
