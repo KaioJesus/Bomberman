@@ -52,7 +52,7 @@ Para compilar e executar este projeto, você precisará ter o compilador GCC (ou
 
 4.  **Execute o jogo**:
     ```bash
-    ./bomberman
+    ./main.exe
     ```
 
 ## 🎮 Controles
