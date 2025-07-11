@@ -5,6 +5,7 @@
 #include <time.h>
 #include <math.h>
 #include "inimigo.h"
+#include "jogador.h"
 <<<<<<< HEAD
 #include"bomb.h"
 =======
@@ -32,8 +33,6 @@ Game *IniciaJogo(void);
 void AtualizaJogo(Game *game);
 void DesenhaJogo(Game *game);
 void HandleInput(Game *game);
-bool verificaColisao(Posicao pos1, Posicao pos2);
-void MoveJogador(Game *game, Direcao dir);
 
 // Função principal
 int main(void)
@@ -90,12 +89,7 @@ Game *IniciaJogo(void)
     Game *game = (Game *)malloc(sizeof(Game));
 
     // Inicializar jogador
-    game->jogador.pos.x = 0;
-    game->jogador.pos.y = 0;
-    game->jogador.vidas = 3;
-    game->jogador.pontos = 0;
-    game->jogador.bombaContador = 3;
-    game->jogador.chavesColetadas = 0;
+    inicializa_jogador(&game->jogador, 0, 0);
 
     // Inicializar estado
     game->state = GAME_PLAYING;
@@ -190,12 +184,7 @@ void DesenhaJogo(Game *game)
     }
 
     // Desenhar jogador
-    Rectangle jogadorRect = {
-        game->jogador.pos.x * BLOCO_TAMANHO,
-        game->jogador.pos.y * BLOCO_TAMANHO,
-        BLOCO_TAMANHO,
-        BLOCO_TAMANHO};
-    DrawRectangleRec(jogadorRect, BLUE);
+    desenhar_jogador(game->jogador);
 
     // Desenhar inimigos
     for (int i = 0; i < game->InimigoCount; i++)
@@ -258,10 +247,8 @@ void HandleInput(Game *game)
             {
             case MENU_NOVO_JOGO:
                 // Resetar jogo
-                game->jogador.vidas = 3;
-                game->jogador.pontos = 0;
-                game->jogador.bombaContador = 3;
-                game->jogador.chavesColetadas = 0;
+                inicializa_jogador(&game->jogador, 0, 0);
+
                 CarregaMapa(game, 1);
                 game->state = GAME_PLAYING;
                 break;
@@ -339,52 +326,3 @@ void HandleInput(Game *game)
     }
 }
 
-// Implementações das funções auxiliares
-bool verificaColisao(Posicao pos1, Posicao pos2)
-{
-    return (pos1.x == pos2.x && pos1.y == pos2.y);
-}
-
-bool EhValidaPosicao(Game *game, Posicao pos)
-{
-    if (pos.x < 0 || pos.x >= MAPA_LARGURA || pos.y < 0 || pos.y >= MAPA_ALTURA)
-    {
-        return false;
-    }
-
-    char tile = game->map.grid[pos.y][pos.x];
-    return (tile == ' ' || tile == 'K');
-}
-
-void MoveJogador(Game *game, Direcao dir)
-{
-    Posicao newPos = game->jogador.pos;
-
-    switch (dir)
-    {
-    case DIR_CIMA:
-        newPos.y--;
-        break;
-    case DIR_BAIXO:
-        newPos.y++;
-        break;
-    case DIR_ESQUERDA:
-        newPos.x--;
-        break;
-    case DIR_DIREITA:
-        newPos.x++;
-        break;
-    }
-
-    if (EhValidaPosicao(game, newPos))
-    {
-        // Verificar se é uma chave
-        if (game->map.grid[newPos.y][newPos.x] == 'K')
-        {
-            game->jogador.chavesColetadas++;
-            game->map.grid[newPos.y][newPos.x] = ' ';
-        }
-
-        game->jogador.pos = newPos;
-    }
-}
