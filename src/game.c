@@ -1,6 +1,7 @@
 // Baseado no código fornecido no segundo arquivo (paste-2.txt)
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "game.h"
 #include "jogador.h"
 
@@ -21,13 +22,7 @@ Game *IniciaJogo(void)
     game->bombaContador = 0;                // Contador de bombas zerado
 
     // Inicialização do mapa
-    // Aloca memória para o array de ponteiros (linhas do mapa)
-    game->map.grid = (char **)malloc(MAPA_ALTURA * sizeof(char *));
-    for (int i = 0; i < MAPA_ALTURA; i++)
-    {
-        // Aloca memória para cada linha do mapa
-        game->map.grid[i] = (char *)malloc(MAPA_LARGURA * sizeof(char));
-    }
+    memset(game->map.grid, ' ', sizeof(game->map.grid));
     game->map.levelAtual = 1;  // Inicia no nível 1
     game->map.totalChaves = 5; // Define 5 chaves por nível
 
@@ -180,15 +175,6 @@ void DesenhaJogo(Game *game)
 // Função para liberar toda a memória alocada dinamicamente
 void FreeGame(Game *game)
 {
-    // Libera a memória de cada linha do grid do mapa
-    for (int i = 0; i < MAPA_ALTURA; i++)
-    {
-        free(game->map.grid[i]);
-    }
-
-    // Libera a memória do array de ponteiros do grid
-    free(game->map.grid);
-
     // Libera a memória da estrutura principal do jogo
     free(game);
 }
@@ -198,7 +184,7 @@ OBSERVAÇÕES IMPORTANTES:
 
 1. GERENCIAMENTO DE MEMÓRIA:
    - A função IniciaJogo() aloca memória que deve ser liberada com FreeGame()
-   - O mapa é uma matriz dinâmica (array de ponteiros para arrays)
+   - O mapa é uma matriz de chars (array de caracteres)
    - É crucial chamar FreeGame() para evitar vazamentos de memória
 
 2. ESTRUTURA DO LOOP DE JOGO:
