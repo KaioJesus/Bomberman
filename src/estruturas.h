@@ -100,7 +100,7 @@ typedef struct
 // Estrutura do mapa do jogo
 typedef struct
 {
-    char **grid;     // Matriz 2D representando o mapa
+    char grid[MAPA_ALTURA][MAPA_LARGURA];     // Matriz 2D representando o mapa
                      // Cada char representa um tipo de bloco:
                      // 'W' = parede indestrutível
                      // 'D' = bloco destrutível
